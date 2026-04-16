@@ -461,6 +461,50 @@ html.dark #glossary-search { background: var(--bg-card); border-color: var(--bor
 .cross-ref h4 { font-family: var(--font-note); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--text-muted); margin-bottom: .75rem; }
 .cross-ref a { display: inline-block; margin-right: 1rem; margin-bottom: .5rem; font-size: .88rem; }
 
+/* ── ACCELERATOR CARDS (Asistentes) ── */
+.accelerator-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin-top: 1.25rem; }
+@media (min-width: 640px) { .accelerator-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 980px) { .accelerator-grid { grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; } }
+
+.accel-card {
+  display: flex; flex-direction: column;
+  padding: 1.4rem 1.45rem 1.5rem;
+  background: var(--bg-card, #fff); border: 1px solid var(--border);
+  border-radius: 16px; border-left: 4px solid var(--border);
+  box-shadow: 0 2px 8px rgba(18,37,98,.04);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+  position: relative; overflow: hidden; color: var(--text);
+}
+.accel-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at top right, var(--accel-glow, transparent) 0%, transparent 60%); opacity: .4; pointer-events: none; transition: opacity .3s; }
+.accel-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(18,37,98,.1); }
+.accel-card:hover::before { opacity: .7; }
+.accel-card--chatgpt { border-left-color: #10A37F; --accel-glow: rgba(16,163,127,.08); }
+.accel-card--blueprint { border-left-color: #8B5CF6; --accel-glow: rgba(139,92,246,.1); }
+html.dark .accel-card { background: rgba(11,37,69,.92); border-color: rgba(255,215,0,.14); }
+
+.accel-card__head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .65rem; position: relative; }
+.accel-card__eyebrow { display: inline-flex; align-items: center; gap: .4rem; font-size: .64rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.accel-card--chatgpt .accel-card__eyebrow { color: #10A37F; }
+.accel-card--blueprint .accel-card__eyebrow { color: #8B5CF6; }
+.accel-card__badge { font-size: .56rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .18rem .5rem; border-radius: 4px; background: rgba(0,0,0,.04); color: var(--text-muted); border: 1px solid var(--border); }
+.accel-card--chatgpt .accel-card__badge { background: rgba(16,163,127,.1); color: #10A37F; border-color: rgba(16,163,127,.25); }
+.accel-card--blueprint .accel-card__badge { background: rgba(139,92,246,.12); color: #8B5CF6; border-color: rgba(139,92,246,.3); }
+.accel-card__title { margin: 0 0 .6rem 0; font-size: 1.08rem; font-weight: 800; line-height: 1.3; color: var(--text); position: relative; }
+.accel-card__desc { font-size: .87rem; line-height: 1.6; color: var(--text-sec); margin: 0 0 1rem 0; position: relative; }
+.accel-card__desc strong { color: var(--text); font-weight: 700; }
+.accel-card__bullets { list-style: none; padding: 0; margin: 0 0 1.15rem 0; font-size: .82rem; line-height: 1.65; color: var(--text-sec); position: relative; }
+.accel-card__bullets li { position: relative; padding-left: 1.25rem; margin-bottom: .2rem; }
+.accel-card__bullets li::before { content: "\2713"; position: absolute; left: 0; top: 0; font-weight: 800; color: #10A37F; }
+.accel-card--blueprint .accel-card__bullets li::before { color: #8B5CF6; }
+
+.accel-card__cta { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .8rem 1.1rem; border-radius: 999px; color: #fff; font-weight: 700; text-decoration: none; font-size: .85rem; transition: transform .2s, box-shadow .2s; min-height: 44px; position: relative; }
+.accel-card__cta:hover { transform: translateY(-1px); text-decoration: none; }
+.accel-card__cta--gpt { background: linear-gradient(135deg, #10A37F, #0D8F6B); box-shadow: 0 6px 18px rgba(16,163,127,.3); }
+.accel-card__cta--gpt:hover { box-shadow: 0 10px 24px rgba(16,163,127,.4); }
+.accel-card__cta-row { display: flex; gap: .55rem; margin-top: auto; }
+.accel-card__cta--compact { padding: .65rem .85rem; font-size: .78rem; flex: 1 1 0; min-height: 40px; }
+.accel-card__cta--gem { background: linear-gradient(135deg, #4285F4, #1A73E8); box-shadow: 0 6px 18px rgba(66,133,244,.3); }
+
 /* ── MODE CARDS (Premium UI) ── */
 .mode-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.5rem; }
 @media (min-width: 769px) { .mode-grid { grid-template-columns: 1fr 1fr; } }
@@ -757,6 +801,104 @@ html.dark .scale-step.scale-featured .scale-virtue { color: var(--gold); }
         <p style="margin-top:.75rem;font-style:italic;color:var(--gold-dark);font-size:.92rem;"><span class="es">&ldquo;Cuando ordenas c&oacute;mo trabajas, la tecnolog&iacute;a amplifica tu criterio. Cuando no, amplifica el caos.&rdquo;</span><span class="en">&ldquo;When you organize how you work, technology amplifies your judgment. When you don't, it amplifies chaos.&rdquo;</span></p>
       </div>
     </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════ ASISTENTES ═══════════════════════ -->
+<section class="ebook-page" id="asistentes">
+<div class="ebook-page__content container">
+  <div class="section-header reveal">
+    <span class="chip"><span class="es">Acelerador</span><span class="en">Accelerator</span></span>
+    <h2><span class="es">Asistentes de Aprendizaje — &uacute;salos mientras lees</span><span class="en">Learning Assistants — use them as you read</span></h2>
+  </div>
+
+  <div class="reveal" style="padding:1.75rem 1.5rem;border-radius:14px;background:linear-gradient(135deg, rgba(255,215,0,.06), rgba(18,37,98,.05));border:1px solid var(--border);">
+    <div style="text-align:center;margin-bottom:1.25rem;">
+      <p style="font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);margin:0 0 .5rem 0;"><span class="es">3 copilotos entrenados con MetodologIA</span><span class="en">3 copilots trained with MetodologIA</span></p>
+      <div style="display:inline-flex;align-items:center;gap:.55rem;padding:.4rem .95rem;margin:0 0 .75rem 0;background:rgba(16,163,127,.08);border:1px solid rgba(16,163,127,.25);border-radius:999px;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#059669;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span class="es">Sin costo &middot; sin riesgo</span><span class="en">No cost &middot; no risk</span>
+      </div>
+      <h3 style="margin:0 0 .5rem 0;font-size:1.35rem;"><span class="es">Prueba los asistentes antes de seguir leyendo</span><span class="en">Try the assistants before you keep reading</span></h3>
+      <p style="max-width:66ch;margin:0 auto;color:var(--text-sec);font-size:.95rem;line-height:1.65;"><span class="es">Tres asistentes entrenados con la MetodologIA: <strong>Prompting</strong> audita y reescribe tus prompts con m&eacute;todo. <strong>Estudio</strong> te ayuda a aprender cualquier tema con t&eacute;cnicas de ciencia cognitiva. <strong>Research Blueprint</strong> establece el plan metodol&oacute;gico antes de cualquier investigaci&oacute;n profunda. Abr&iacute; cualquiera en otra pesta&ntilde;a, peg&aacute; un caso real y ped&iacute;le trabajo.</span><span class="en">Three assistants trained with MetodologIA: <strong>Prompting</strong> audits and rewrites your prompts with method. <strong>Study</strong> helps you learn any topic with cognitive science techniques. <strong>Research Blueprint</strong> sets the methodological plan before any deep research. Open any of them in another tab, paste a real case and ask them to work.</span></p>
+    </div>
+
+    <div class="accelerator-grid reveal-group">
+      <!-- Prompting Assistant -->
+      <article class="accel-card accel-card--chatgpt">
+        <header class="accel-card__head">
+          <span class="accel-card__eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.28 10.7a5.36 5.36 0 0 0-.46-4.4 5.43 5.43 0 0 0-5.85-2.6 5.43 5.43 0 0 0-9.21 1.95 5.43 5.43 0 0 0-3.63 2.63 5.45 5.45 0 0 0 .67 6.39 5.36 5.36 0 0 0 .46 4.4 5.43 5.43 0 0 0 5.85 2.6 5.43 5.43 0 0 0 9.21-1.95 5.43 5.43 0 0 0 3.63-2.63 5.45 5.45 0 0 0-.67-6.39Z"/></svg>
+            ChatGPT
+          </span>
+          <span class="accel-card__badge">Custom GPT</span>
+        </header>
+        <h4 class="accel-card__title"><span class="es">Asistente de Prompting</span><span class="en">Prompting Assistant</span></h4>
+        <p class="accel-card__desc"><span class="es">Audita, reescribe y mejora tus prompts con m&eacute;todo. Ideal para practicar los 14 prompts del Playbook y refinarlos para tu contexto espec&iacute;fico.</span><span class="en">Audits, rewrites and improves your prompts with method. Ideal for practicing the 14 Playbook prompts and refining them for your specific context.</span></p>
+        <ul class="accel-card__bullets">
+          <li><span class="es">Auditor&iacute;a de prompts en vivo</span><span class="en">Live prompt audit</span></li>
+          <li><span class="es">Reescritura con trazabilidad</span><span class="en">Rewrite with traceability</span></li>
+          <li><span class="es">Refina los Meta-Prompts M1-M4</span><span class="en">Refines Meta-Prompts M1-M4</span></li>
+        </ul>
+        <a class="accel-card__cta accel-card__cta--gpt" href="https://chatgpt.com/g/g-68f4434cf0348191a569cf526fa53654-prompting" target="_blank" rel="noopener noreferrer">
+          <span class="es">Abrir GPT de Prompting</span><span class="en">Open Prompting GPT</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Estudio Assistant -->
+      <article class="accel-card accel-card--chatgpt">
+        <header class="accel-card__head">
+          <span class="accel-card__eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.28 10.7a5.36 5.36 0 0 0-.46-4.4 5.43 5.43 0 0 0-5.85-2.6 5.43 5.43 0 0 0-9.21 1.95 5.43 5.43 0 0 0-3.63 2.63 5.45 5.45 0 0 0 .67 6.39 5.36 5.36 0 0 0 .46 4.4 5.43 5.43 0 0 0 5.85 2.6 5.43 5.43 0 0 0 9.21-1.95 5.43 5.43 0 0 0 3.63-2.63 5.45 5.45 0 0 0-.67-6.39Z"/></svg>
+            ChatGPT
+          </span>
+          <span class="accel-card__badge">Custom GPT</span>
+        </header>
+        <h4 class="accel-card__title"><span class="es">Asistente de Estudio</span><span class="en">Study Assistant</span></h4>
+        <p class="accel-card__desc"><span class="es">Tu compa&ntilde;ero para los Workflows del Playbook. Aplica ciencia cognitiva: recuperaci&oacute;n, espaciado, Feynman. Te eval&uacute;a, genera planes de estudio y detecta tus lagunas.</span><span class="en">Your companion for the Playbook Workflows. Applies cognitive science: retrieval, spacing, Feynman. Evaluates you, generates study plans and detects your gaps.</span></p>
+        <ul class="accel-card__bullets">
+          <li><span class="es">6 t&eacute;cnicas de ciencia cognitiva</span><span class="en">6 cognitive science techniques</span></li>
+          <li><span class="es">Evaluaci&oacute;n + detecci&oacute;n de lagunas</span><span class="en">Evaluation + gap detection</span></li>
+          <li><span class="es">Planes Express (4h), Sprint (20h), Marat&oacute;n (200h)</span><span class="en">Express (4h), Sprint (20h), Marathon (200h) plans</span></li>
+        </ul>
+        <a class="accel-card__cta accel-card__cta--gpt" href="https://chatgpt.com/g/g-69396067bbd88191aaa7b2479be71ff8-estudio" target="_blank" rel="noopener noreferrer">
+          <span class="es">Abrir GPT de Estudio</span><span class="en">Open Study GPT</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Research Blueprint · GPT + Gema -->
+      <article class="accel-card accel-card--blueprint">
+        <header class="accel-card__head">
+          <span class="accel-card__eyebrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Research Blueprint
+          </span>
+          <span class="accel-card__badge" style="background:rgba(139,92,246,.12);color:#8B5CF6;border-color:rgba(139,92,246,.3);">GPT + Gema</span>
+        </header>
+        <h4 class="accel-card__title"><span class="es">Planificador de Investigaci&oacute;n</span><span class="en">Research Planner</span></h4>
+        <p class="accel-card__desc"><span class="es">Antes de un Deep Research ciego, establece el <strong>blueprint</strong>: preguntas-gu&iacute;a, hip&oacute;tesis, fuentes primarias y criterios. Convierte &ldquo;investigar X&rdquo; en &ldquo;investigar X con m&eacute;todo&rdquo;.</span><span class="en">Before a blind Deep Research, it sets the <strong>blueprint</strong>: guiding questions, hypotheses, primary sources and criteria. Turns &ldquo;research X&rdquo; into &ldquo;research X with method&rdquo;.</span></p>
+        <ul class="accel-card__bullets">
+          <li><span class="es">Paso 0 antes de Deep Research</span><span class="en">Step 0 before Deep Research</span></li>
+          <li><span class="es">Preguntas, hip&oacute;tesis y fuentes</span><span class="en">Questions, hypotheses and sources</span></li>
+          <li><span class="es">Triangulable en 3 modelos</span><span class="en">Triangulable across 3 models</span></li>
+        </ul>
+        <div class="accel-card__cta-row">
+          <a class="accel-card__cta accel-card__cta--gpt accel-card__cta--compact" href="https://chatgpt.com/g/g-69d59bec507c819197750fbbc1e74aae-research-blueprint" target="_blank" rel="noopener noreferrer">
+            GPT <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="accel-card__cta accel-card__cta--gem accel-card__cta--compact" href="https://gemini.google.com/gem/7092d04b2915?hl=es_419" target="_blank" rel="noopener noreferrer">
+            Gema <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <p style="text-align:center;font-style:italic;color:var(--text-muted);font-size:.88rem;margin:1.25rem 0 0 0;"><span class="es">&ldquo;La teor&iacute;a se aprende leyendo. El aprendizaje se aprende practicando.&rdquo;</span><span class="en">&ldquo;Theory is learned by reading. Learning is learned by practicing.&rdquo;</span></p>
+
+    <p class="note" style="text-align:center;margin-top:.75rem;"><span class="es">M&aacute;s asistentes: <a href="https://metodologia.info/recursos/asistentes-gpt/index" target="_blank" rel="noopener noreferrer">Cat&aacute;logo GPTs</a> &middot; <a href="https://metodologia.info/recursos/asistentes-gemini/index" target="_blank" rel="noopener noreferrer">Cat&aacute;logo Gemini Gems</a> &middot; Actualizados cada fin de mes.</span><span class="en">More assistants: <a href="https://metodologia.info/recursos/asistentes-gpt/index" target="_blank" rel="noopener noreferrer">GPTs Catalog</a> &middot; <a href="https://metodologia.info/recursos/asistentes-gemini/index" target="_blank" rel="noopener noreferrer">Gemini Gems Catalog</a> &middot; Updated monthly.</span></p>
   </div>
 </div>
 </section>
